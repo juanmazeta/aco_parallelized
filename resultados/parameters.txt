@@ -1,0 +1,8 @@
+max_tries 10
+optimal 0.0
+n_ants 32
+rho 0.5
+q_0 0.0
+max_time 100
+max_iters 10
+restart_iters 3
