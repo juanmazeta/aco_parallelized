@@ -1,11 +1,10 @@
-Try 0:	 iters 2638	 best_iter 2429	 time 10.004017	 best_time 9.369349 	 best_score 1.000000	 restarts 2 
- Try 1:	 iters 2631	 best_iter 2586	 time 10.001734	 best_time 9.877614 	 best_score 1.000000	 restarts 2 
- Try 2:	 iters 2541	 best_iter 2540	 time 9.688497	 best_time 9.688472 	 best_score 0.000000	 restarts 0 
- Try 3:	 iters 2634	 best_iter 2468	 time 10.002341	 best_time 9.515135 	 best_score 1.000000	 restarts 1 
- Try 4:	 iters 2625	 best_iter 2482	 time 10.001225	 best_time 9.578307 	 best_score 1.000000	 restarts 1 
- Try 5:	 iters 2636	 best_iter 2606	 time 10.000854	 best_time 9.919046 	 best_score 1.000000	 restarts 0 
- Try 6:	 iters 2576	 best_iter 2575	 time 9.781438	 best_time 9.781414 	 best_score 0.000000	 restarts 0 
- Try 7:	 iters 2638	 best_iter 2532	 time 10.001018	 best_time 9.692699 	 best_score 3.000000	 restarts 2 
- Try 8:	 iters 2623	 best_iter 2528	 time 10.001510	 best_time 9.735649 	 best_score 1.000000	 restarts 1 
- Try 9:	 iters 2429	 best_iter 2428	 time 9.329800	 best_time 9.329774 	 best_score 0.000000	 restarts 0 
- 
+ Try 0:	 iters 2557	 best_iter 2556	 time 10.610763	 best_time 10.610735 	 best_score 0.000000	 restarts 0 
+ Try 1:	 iters 2597	 best_iter 2596	 time 10.722320	 best_time 10.722292 	 best_score 0.000000	 restarts 2 
+ Try 2:	 iters 2679	 best_iter 2678	 time 10.983316	 best_time 10.983289 	 best_score 0.000000	 restarts 0 
+ Try 3:	 iters 2592	 best_iter 2591	 time 10.686649	 best_time 10.686623 	 best_score 0.000000	 restarts 1 
+ Try 4:	 iters 2433	 best_iter 2432	 time 10.196325	 best_time 10.196298 	 best_score 0.000000	 restarts 1 
+ Try 5:	 iters 2768	 best_iter 2767	 time 11.311505	 best_time 11.311478 	 best_score 0.000000	 restarts 3 
+ Try 6:	 iters 2731	 best_iter 2730	 time 11.047236	 best_time 11.047209 	 best_score 0.000000	 restarts 2 
+ Try 7:	 iters 2569	 best_iter 2568	 time 10.586578	 best_time 10.586550 	 best_score 0.000000	 restarts 1 
+ Try 8:	 iters 2849	 best_iter 2848	 time 11.622250	 best_time 11.622223 	 best_score 0.000000	 restarts 3 
+ Try 9:	 iters 2951	 best_iter 2950	 time 11.757300	 best_time 11.757273 	 best_score 0.000000	 restarts 4 

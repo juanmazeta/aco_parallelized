@@ -119,46 +119,7 @@ double ran01( long *idum )
 }
 
 
-
-long int random_number( long *idum )
-/*    
-      FUNCTION:       generate an integer random number
-      INPUT:          pointer to variable containing random number seed
-      OUTPUT:         integer random number uniformly distributed in {0,2147483647}
-      (SIDE)EFFECTS:  random number seed is modified (important, has to be done!)
-      ORIGIN:         numerical recipes in C
-*/
-{
-  long int k;
-
-  k =(*idum)/IQ;
-  *idum = IA * (*idum - k * IQ) - IR * k;
-  if (*idum < 0 ) *idum += IM;
-  return *idum;
-}
-
-
 /******************* GENERATE MATRIX *******************/
-
-int * generate_int_matrix( int n, int m)
-/*    
-      FUNCTION:       malloc a matrix and return pointer to it
-      INPUT:          size of matrix as n x m 
-      OUTPUT:         pointer to matrix
-      (SIDE)EFFECTS:  
-*/
-{
-  int *matrix;
-
-  if((matrix = (int*) malloc(sizeof(int) * n * m)) == NULL) {
-    printf("Out of memory, exit.");
-    exit(1);
-  }
-
-  return matrix;
-}
-
-
 
 double * generate_double_matrix( int n, int m)
 /*    
@@ -206,9 +167,6 @@ void read_parameters( void )
         else if ( !strcmp(texto,"max_iters") ) max_iters = (int)numero;
         else if ( !strcmp(texto,"restart_iters") ) restart_iters = (int)numero;
         else if ( !strcmp(texto,"max_time") ) max_time = numero;
-        else if ( !strcmp(texto,"as_flag") ) as_flag = (int)numero;
-        else if ( !strcmp(texto,"eas_flag") ) eas_flag = (int)numero;
-        else if ( !strcmp(texto,"mmas_flag") ) mmas_flag = (int)numero;
         else if ( !strcmp(texto,"u_gb") ) u_gb = (int)numero;
         else if ( !strcmp(texto,"optimal") ) optimal = numero;
         else printf(">>>>>>>>> Unknown parameter: %s\n",texto);
@@ -256,11 +214,8 @@ void set_default_parameters(void)
     q_0            = 0.0;
     max_iters      = 5000;
     seed           = (long int) time(NULL)*(ntry+1);
-    max_time       = 10.0;
+    max_time       = 12.0;
     optimal        = 0.0;
-    as_flag        = 0;
-    eas_flag       = 0;
-    mmas_flag      = 1;
     u_gb	         = 20;
     restart_iters  = 100;
 }
@@ -283,28 +238,8 @@ void print_parameters()
     printf("n_ants\t\t\t %d\n", n_ants);
     printf("rho\t\t\t %.2f\n", rho);
     printf("q_0\t\t\t %.2f\n", q_0);
-    printf("as_flag\t\t\t %d\n", as_flag);
-    printf("eas_flag\t\t %d\n", eas_flag);
-    printf("mmas_flag\t\t %d\n", mmas_flag);
     printf("restart_iters\t\t %d\n", restart_iters);
     printf("u_gb\t\t\t %d\n", u_gb);
-}
-
-
-void printSolution( int *t )
-/*
- FUNCTION:       print the solution *t
- INPUT:          pointer to a solution
- OUTPUT:         none
- */
-{
-    int   i;
-    
-    printf("[ ");
-    for( i = 0 ; i < n ; i++ ) {
-        printf("%d ", t[i]);
-    }
-    printf(" ]\n");
 }
 
 
@@ -337,7 +272,7 @@ void write_report( void )
 
   if (final_report){
     fprintf(final_report,
-            "Try %d:\t iters %d\t best_iter %d\t time %f\t best_time %f \t best_score %f\t restarts %d \n ",
+            " Try %d:\t iters %d\t best_iter %d\t time %f\t best_time %f \t best_score %f\t restarts %d \n",
             ntry,iteration,best_iteration,elapsed_time(REAL),best_time,best_so_far_ant_score,n_restarts);
   }
   fprintSolution(best_so_far_ant_solution);

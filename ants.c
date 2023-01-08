@@ -22,21 +22,17 @@ double best_so_far_ant_score;   /* just the best */
 
 double   *pheromone;
 
-int n_ants;      /* number of ants */
+int n_ants;                     /* number of ants */
 
-double rho;           /* parameter for evaporation */
-double q_0;           /* probability of best choice in tour construction */
+double rho;                     /* parameter for evaporation */
+double q_0;                     /* probability of best choice in tour construction */
 
-int as_flag;     /* ant system */
-int eas_flag;    /* elitist ant system */
-int mmas_flag;   /* MAX-MIN ant system */
-
-double   trail_max;       /* maximum pheromone trail in MMAS */
-double   trail_min;       /* minimum pheromone trail in MMAS */
-double   trail_0;         /* initial pheromone level */
+double   trail_max;             /* maximum pheromone trail in MMAS */
+double   trail_min;             /* minimum pheromone trail in MMAS */
+double   trail_0;               /* initial pheromone level */
 int     u_gb;
 
-int n;		/* problem size */
+int n;		                    /* problem size */
 
 
 void allocate_ants ( void )
@@ -93,31 +89,6 @@ int find_best( void )
     }
     return k_min;
 }
-
-
-
-int find_worst( void )
-/*    
-      FUNCTION:       find the worst ant of the current iteration
-      INPUT:          none
-      OUTPUT:         pointer to struct containing iteration best ant
-      (SIDE)EFFECTS:  none
-*/
-{
-    double   max;
-    int   k, k_max;
-
-    max = ant_scores[0];
-    k_max = 0;
-    for( k = 1 ; k < n_ants ; k++ ) {
-        if( ant_scores[k] > max ) {
-            max = ant_scores[k];
-            k_max = k;
-        }
-    }
-    return k_max;
-}
-
 
 
 /************************************************************
@@ -206,26 +177,6 @@ void global_update_pheromone( int *solutions, double score )
 }
 
 
-void global_update_pheromone_weighted( int *solution, double score, int weight )
-/*    
-      FUNCTION:      reinforces edges of the ant's tour with weight "weight"
-      INPUT:         index k of the ant that updates pheromones and its weight  
-      OUTPUT:        none
-      (SIDE)EFFECTS: pheromones of arcs in the ant's tour are increased
-*/
-{  
-    int      i, j;
-    double   d_tau;
-
-    d_tau = (double) weight / score;
-
-    for ( i = 0 ; i < n ; i++ ) {
-        j = solution[i];
-        pheromone[i * 2 + j] += d_tau;
-    }       
-}
-
-
 /****************************************************************
  ****************************************************************
 Procedures implementing solution construction and related things
@@ -259,7 +210,6 @@ void select_gate( int k, int gate )
         else {
             ant_solutions[k * n + gate] = 1;
         }
-        return;
     }
     else {
         if (ran01(&seed) < prob0 ) {

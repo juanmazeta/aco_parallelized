@@ -16,37 +16,28 @@ zero */
 
 #define MAX_ANTS       1024    /* max no. of ants */
 
-typedef struct {
-    int  *solution;
-    double  score;
-} ant_struct;
+extern int     *ant_solutions;     /* array with the colony solutions  - size n_ants * n   */
+extern double  *ant_scores;        /* array with the colony scores     - size n_ants       */
 
-int * ant_solutions;    /* array with the colony solutions  - size n_ants * n   */
-double * ant_scores;    /* array with the colony scores     - size n_ants       */
-
-int *best_so_far_ant_solution;
-double best_so_far_ant_score;
+extern int     *best_so_far_ant_solution;
+extern double  best_so_far_ant_score;
 
 //TO DO
-extern double   *pheromone; /* pheromone matrix, two entries for each gate */
+extern double   *pheromone;  /* pheromone matrix, two entries for each gate */
 
-extern int n_ants;      /* number of ants */
+extern int      n_ants;      /* number of ants */
 
-extern double rho;           /* parameter for evaporation */
-extern double q_0;           /* probability of best choice in tour construction */
+extern double   rho;         /* parameter for evaporation */
+extern double   q_0;         /* probability of best choice in tour construction */
 
-extern int as_flag;     /* = 1, run ant system */
-extern int eas_flag;    /* = 1, run elitist ant system */
-extern int mmas_flag;   /* = 1, run MAX-MIN ant system */
+extern double   trail_max;   /* maximum pheromone trail in MMAS */
+extern double   trail_min;   /* minimum pheromone trail in MMAS */
+extern double   trail_0;     /* initial pheromone trail level */
+extern int      u_gb;        /* every u_gb iterations update with best-so-far ant */
 
-extern double   trail_max;       /* maximum pheromone trail in MMAS */
-extern double   trail_min;       /* minimum pheromone trail in MMAS */
-extern double   trail_0;         /* initial pheromone trail level */
-extern int u_gb;            /* every u_gb iterations update with best-so-far ant */
+extern int      n; 		     /* problem size */
 
-extern int n; 		/* problem size */
-
-extern int *bs_optimum;  /* problem optimal solution (for toy model) */
+extern int      *bs_optimum; /* problem optimal solution (for toy model) */
 
 /***************************** IN-OUT **************************************/
 
@@ -83,18 +74,6 @@ typedef enum type_timer {REAL, VIRTUAL} TIMER_TYPE;
 
 #define INFTY                 LONG_MAX
 
-#define TRUE  1
-#define FALSE 0
-
-/* general macros */
-
-#define MAX(x,y)        ((x)>=(y)?(x):(y))
-#define MIN(x,y)        ((x)<=(y)?(x):(y))
-
-#define DEBUG( x )
-
-#define TRACE( x )
-
 /* constants for a random number generator, for details see numerical recipes in C */
 
 #define IA 16807
@@ -102,15 +81,10 @@ typedef enum type_timer {REAL, VIRTUAL} TIMER_TYPE;
 #define AM (1.0/IM)
 #define IQ 127773
 #define IR 2836
-#define MASK 123459876
 
 extern long int seed;
 
 double ran01 ( long *idum );
-
-long int random_number ( long *idum );
-
-int * generate_int_matrix( int n, int m);
 
 double * generate_double_matrix( int n, int m);
 
@@ -135,23 +109,13 @@ void evaporation ( void );
 
 void global_update_pheromone( int *solutions, double score );
 
-void global_update_pheromone_weighted( int *solution, double score, int weight );
-
-void compute_total_information( void );
-
 void select_gate( int k, int gate );
 
 int find_best ( void );
 
-int find_worst( void );
-
 void copy_from_to(int *solution1, double score1, int *solution2, double *score2);
 
 void allocate_ants ( void );
-
-//int distance_between_ants( ant_struct *a1, ant_struct *a2);
-
-//double compute_score ( int *s );
 
 /***************************** IN-OUT **************************************/
 
@@ -164,8 +128,6 @@ void init_report();
 void write_report();
 
 void print_parameters ( void );
-
-void printSolution ( int *t);
 
 void fprintSolution ( int *t);
 

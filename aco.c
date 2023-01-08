@@ -48,7 +48,7 @@ void construct_solutions()
 
     for ( k = 0 ; k < n_ants ; k++ ) {
        for ( j = 0 ; j < n ; j++ ) {
-            select_gate( k, j);
+            select_gate( k, j );
         }
         
         /* compute scores */
@@ -108,16 +108,11 @@ void init_aco( void )
     pheromone = generate_double_matrix( n, 2 );
 
     /* Initialize pheromone trails */
-    if (mmas_flag) {
-        trail_max = 1. / ( (rho) * 0.5 );
-        trail_min = trail_max / ( 2. * n );
-        trail_0 = trail_max;
-        init_pheromone_trails( trail_0 );
-    }
-    else {
-        trail_0 = 0;
-        init_pheromone_trails( trail_0 );
-    }
+    trail_max = 1. / ( (rho) * 0.5 );
+    trail_min = trail_max / ( 2. * n );
+    trail_0 = trail_max;
+    init_pheromone_trails( trail_0 );
+
 
     if (report) fprintf(report,"******** Try: %d **********\n",ntry);
     if (report_iter) fprintf(report_iter,"******** Try: %d **********\n",ntry);
@@ -170,15 +165,13 @@ void update_statistics( void )
         restart_best = iteration;
         best_time = time_used;
 
-        if ( mmas_flag ) {
-            trail_max = 1. / ( (rho) * best_so_far_ant_score );
-            trail_min = trail_max / ( 2. * n );
-            trail_0 = trail_max;
-        }
+        trail_max = 1. / ( (rho) * best_so_far_ant_score );
+        trail_min = trail_max / ( 2. * n );
+        trail_0 = trail_max;
 
     }
    
-    if ( mmas_flag && (iteration - restart_best > restart_iters) ) {
+    if ( iteration - restart_best > restart_iters ) {
         /* MAX-MIN Ant System was the first ACO algorithm to use
          pheromone trail re-initialisation as implemented
          here. Other ACO algorithms may also profit from this mechanism.
